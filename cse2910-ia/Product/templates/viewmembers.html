@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+    <style>
+            body {
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,151,47,1) 0%, rgba(19,136,8,1) 100%);
+        }
+
+        table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+        }
+
+            td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+        }
+
+            tr:nth-child(even) {
+      background-color: #dddddd;
+        }
+
+    </style>
+
+
+
+    <head>
+            <title>
+                VIEW MEMBERS
+            </title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+
+        <!-- Navbar -->
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a><h3>AGA</h3></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active ml-4">
+                        <a class="nav-link" href="/home"><h4>Home</h4> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="/addmembers"> <h4>Add Member</h4> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="/viewmembers"> <h4>View Members </h4> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="/"> <h4>Exit </h4> <span class="sr-only"></span></a>
+                    </li>
+                    </ul>
+                <a><h3>User: {{user}}</h3></a>
+            </div>
+        </nav>
+
+        <!-- Search Bar -->
+
+        <div class="jumbotron mt-3">
+
+        <h1 class="display-4 mb-3" style="font-family:'Montserrat'">All Members</h1>
+
+        <form class="form-inline my-2 mb-2" method="POST" action="/viewmembers">
+            <div class="form-group">
+                <label for="search"></label>
+                <input type="search" class="form-control" name="search" placeholder="Search..">
+                <button class="btn btn-outline-success my-sm-0 ml-1" type="submit">Search</button>
+            </div>
+        </form>
+
+        <!-- Displays all  members in a table -->
+
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Payment</th>
+                <th>Date Membership Bought</th>
+                <th>Date Membership Ends</th>
+                <th>Delete</th>
+            </tr>
+
+            {% if search != [] %}
+
+            <tr>
+            {% for searches in search%}
+                <td>{{searches[0]}}</td>
+                <td>{{searches[1]}}</td>
+                <td>{{searches[2]}}</td>
+                <td>{{searches[3]}}</td>
+                <td>${{searches[4]}}</td>
+                <td>{{searches[5]}}</td>
+                <td>{{searches[6]}}</td>
+                <td><a href="/delete/{{searches[2]}}" class="btn btn-danger" role="button">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+
+
+            {% else %}
+
+            <tr>
+            {% for member in members%}
+                <td>{{member[0]}}</td>
+                <td>{{member[1]}}</td>
+                <td>{{member[2]}}</td>
+                <td>{{member[3]}}</td>
+                <td>${{member[4]}}</td>
+                <td>{{member[5]}}</td>
+                <td>{{member[6]}}</td>
+                <td><a href="/delete/{{member[2]}}" class="btn btn-danger" role="button">Delete</a></td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </table>
+        </div>
+    </body>
+</html>

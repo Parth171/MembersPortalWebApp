@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <!-- Background -->
+    <style>
+        body {
+        background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,151,47,1) 0%, rgba(19,136,8,1) 100%);
+        }
+    </style>
+
+
+
+    <head>
+        <title>
+            ADD MEMBERS
+        </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a><h3>AGA</h3></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active ml-4">
+                    <a class="nav-link" href="/home"><h4>Home</h4> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active ml-3">
+                    <a class="nav-link" href="/addmembers"> <h4>Add Member</h4> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active ml-3">
+                    <a class="nav-link" href="/viewmembers"> <h4>View Members </h4> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active ml-3">
+                    <a class="nav-link" href="/"> <h4>Exit </h4> <span class="sr-only"></span></a>
+            </li>
+            </ul>
+            <a><h3>User: {{user}}</h3></a>
+        </div>
+    </nav>
+
+
+
+        <div class="container">
+
+            <!-- Alerts for error checking -->
+
+            {% if alert == "Fill in all the fields" %}
+
+                <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                    <strong>Fill in all the fields!</strong>
+                </div>
+            {% endif %}
+
+            {% if alert == "Successfully added the member" %}
+
+                <div class="alert alert-success alert-success mt-3" role="alert">
+                    <strong>Successfully added the member! This member needs to pay ${{payment}}</strong>
+                </div>
+
+            {% endif %}
+
+            {% if alert == "A member with the given email already exists." %}
+
+                <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                    <strong>A member with the given email already exists.</strong>
+                </div>
+
+            {% endif %}
+
+        <!-- User Form -->
+
+            <div class="jumbotron mt-3">
+                <h1 class="display-4 mb-3" style="font-family:'Montserrat'">Add Members</h1>
+                <form method="POST" action="/addmembers">
+
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Email address</label>
+                        <input type="email" class="form-control" name="email" pattern=".+.com" placeholder="name@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <select id="inputState" class="form-control" name="age">
+                        <option selected> Age</option>
+                        <option>6-16 years</option>
+                        <option>17-60 years</option>
+                        <option>60+ years</option>
+                        </select>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Date</label>
+                            <input type="date" class="form-control" name="date" placeholder="MM/DD/YYYY">
+                        </div>
+
+                        <!--  Submit Form Button  -->
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+
+

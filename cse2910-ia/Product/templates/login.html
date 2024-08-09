@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <style>
+        body {
+        background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,151,47,1) 0%, rgba(19,136,8,1) 100%);
+        }
+
+    </style>
+
+    <head>
+        <title>
+            MEMBERS PORTAL
+        </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+    <!-- Login -->
+
+        <div class="container mt-5">
+
+            <div class=" jumbotron" style="text-align: center;">
+
+                <div>
+                    <h1 class="display-3"> Alberta Gujarati Association</h1>
+                </div>
+
+                <div >
+                    <h1 class="display-5 mb-3"> Members Portal</h1>
+                </div>
+
+                <div >
+                    <h4 >  Enter Username and Password </h4>
+                </div>
+
+                <!-- Alert if incorrect login information is entered -->
+                {% if alert != "" %}
+                    <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                        <strong>Try Again!</strong> {{alert}}
+                    </div>
+                {% endif %}
+
+
+                <div class="mt-5">
+
+                    <form method="POST" action="/">
+                        <label class="font-weight-bold" for="user_name">User Name: </label>
+                        <input  type="text" name="user_name">
+
+                        <label class="font-weight-bold" for="password">Password: </label>
+                        <input type="password" name="password">
+
+                        <div class="mx-auto mt-3">
+                            <button type="submit" name="LOGIN" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
